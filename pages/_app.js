@@ -1,7 +1,15 @@
-import '../styles/globals.css'
+import { BodyLayout } from "../components/layout/BodyLayout";
+import { EthereumProvider } from "../context/EthereumContext";
+import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function App({ Component, pageProps }) {
+  return (
+    <EthereumProvider>
+      <BodyLayout id="app-root">
+        <Component {...pageProps} />
+      </BodyLayout>
+    </EthereumProvider>
+  );
 }
 
-export default MyApp
+export default App;

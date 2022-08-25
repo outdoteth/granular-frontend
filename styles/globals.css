@@ -2,25 +2,26 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
+  font-family: monospace;
 }
 
 * {
-  box-sizing: border-box;
+  font-family: inherit;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+button {
+  padding: 8px;
+  animation: mymove 0.5s infinite;
+  color: black;
+  cursor: pointer;
+  border: unset;
+}
+
+
+@keyframes mymove {
+  20% {background-color: red;}
+  40% {background-color: orange;}
+  60% {background-color: yellow;}
+  80% {background-color: green;}
+  100% {background-color: violet;}
 }

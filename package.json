@@ -9,9 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "alchemy-sdk": "^2.0.3",
+    "ethers": "^5.7.0",
+    "keccak256": "^1.0.6",
+    "merkletreejs": "^0.2.32",
     "next": "12.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "styled-components": "^5.3.5",
+    "wagmi": "^0.6.4"
   },
   "devDependencies": {
     "eslint": "8.22.0",
