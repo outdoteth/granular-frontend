@@ -6,12 +6,12 @@ import { SelectSubpoolNft } from "../core/SelectSubpoolNft";
 import poolAbi from "../../contracts/pool.abi.json";
 import { useAccount, useSigner } from "wagmi";
 
-export const AddLiquidity = () => {
+export const AddLiquidity = ({ tokenAddress }) => {
   const [subpoolTokens, setSubpoolTokens] = useState({});
   const { address } = useAccount();
   const { data: signer } = useSigner();
   const [subpools, poolAddress, subpoolsLoading] = useSubpools({
-    tokenAddress: process.env.NEXT_PUBLIC_BAYC_ADDRESS,
+    tokenAddress,
   });
 
   const lpAdds = useMemo(() => {
@@ -48,7 +48,7 @@ export const AddLiquidity = () => {
       <SelectSubpoolNft
         onChange={setSubpoolTokens}
         value={subpoolTokens}
-        tokenAddress={process.env.NEXT_PUBLIC_BAYC_ADDRESS}
+        tokenAddress={tokenAddress}
         address={address}
       />
 
@@ -56,7 +56,7 @@ export const AddLiquidity = () => {
 
       <ul>
         {lpAdds?.map(({ ethAmount, subpoolId, tokens }) => (
-          <li>
+          <li key={subpoolId}>
             subpool-{subpoolId + 1} : {tokens.length} nfts +{" "}
             {formatEther(ethAmount)} ether
           </li>

@@ -1,0 +1,14 @@
+{
+    "tokens": [
+        {
+          "address": "0xE47463A0B8Fd39286D7a72cA8E334795779e2f77",
+          "symbol": "FBAYC",
+          "name": "Fake Bored Ape Yacht Club"
+        },
+        {
+            "address": "0x53c5469859588991cea2fb2b56748c09f4339e07",
+            "symbol": "FMOONBIRD",
+            "name": "Fake Moonbirds"
+        }
+    ]
+}

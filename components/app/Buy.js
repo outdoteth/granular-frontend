@@ -6,11 +6,11 @@ import { SelectSubpoolNft } from "../core/SelectSubpoolNft";
 import poolAbi from "../../contracts/pool.abi.json";
 import { useSigner } from "wagmi";
 
-export const Buy = () => {
+export const Buy = ({ tokenAddress }) => {
   const [subpoolTokens, setSubpoolTokens] = useState({});
   const { data: signer } = useSigner();
   const [subpools, poolAddress, subpoolsLoading] = useSubpools({
-    tokenAddress: process.env.NEXT_PUBLIC_BAYC_ADDRESS,
+    tokenAddress,
   });
 
   const swaps = useMemo(() => {
@@ -54,7 +54,7 @@ export const Buy = () => {
       <SelectSubpoolNft
         onChange={setSubpoolTokens}
         value={subpoolTokens}
-        tokenAddress={process.env.NEXT_PUBLIC_BAYC_ADDRESS}
+        tokenAddress={tokenAddress}
         address={poolAddress}
         hideFirstNft // used to prevent draining the pool (not possible)
       />
@@ -63,7 +63,7 @@ export const Buy = () => {
 
       <ul>
         {swaps?.map(({ subpoolId, tokens }, i) => (
-          <li>
+          <li key={subpoolId}>
             subpool-{subpoolId + 1} : {tokens.length} nfts : <br />
             costs{" "}
             {formatEther(afterSwapPrices[i].mul(tokens.length.toString()))}{" "}

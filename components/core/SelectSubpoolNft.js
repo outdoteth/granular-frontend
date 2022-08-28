@@ -2,8 +2,15 @@ import { formatEther } from "ethers/lib/utils";
 import { useAccount } from "wagmi";
 import { useNfts } from "../../hooks/useNfts";
 import { useSubpools } from "../../hooks/useSubpools";
-import rankings from "../../rankings/bayc.json";
 import { generateMerkleProof } from "../../utils/generateMerkleProof";
+
+import baycRankings from "../../rankings/bayc.json";
+import moonbirdRankings from "../../rankings/moonbirds.json";
+
+const addressToRankings = {
+  ["0xE47463A0B8Fd39286D7a72cA8E334795779e2f77"]: baycRankings,
+  ["0x53c5469859588991cea2fb2b56748c09f4339e07"]: moonbirdRankings,
+};
 
 export const SelectSubpoolNft = ({
   onChange,
@@ -21,6 +28,8 @@ export const SelectSubpoolNft = ({
     tokenAddress,
   });
 
+  const rankings = addressToRankings[tokenAddress];
+
   const rankedNfts = nfts.reduce((arr, nft) => {
     const bin = rankings[nft.tokenId] - 1;
 
@@ -37,6 +46,8 @@ export const SelectSubpoolNft = ({
 
       <div>
         {subpools &&
+          !subpoolsLoading &&
+          !loading &&
           rankedNfts.map(
             (nfts, index) =>
               (!hideFirstNft || nfts.length > 1) &&
@@ -45,7 +56,7 @@ export const SelectSubpoolNft = ({
                 <div key={index}>
                   <h4>
                     subpool-{index + 1} : current price{" "}
-                    {formatEther(subpools[index].price)} ether : (
+                    {formatEther(subpools[index]?.price || "1")} ether : (
                     {value[index]?.tokens.length || 0} selected)
                   </h4>
 

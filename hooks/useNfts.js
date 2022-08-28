@@ -9,6 +9,8 @@ export const useNfts = ({ address, tokenAddress }) => {
   const fetchMore = async () => {
     setLoading(true);
 
+    console.log("fetching", tokenAddress);
+
     if (address) {
       // fetch address nfts
       let cachedPageKey;
