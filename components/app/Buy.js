@@ -33,7 +33,11 @@ export const Buy = ({ tokenAddress }) => {
   const buy = async () => {
     try {
       const totalEthAmount = swaps
-        .map((swap, i) => afterSwapPrices[i].mul(swap.tokens.length.toString()))
+        .map((swap, i) =>
+          subpools[swap.subpoolId].ethReserves
+            .mul(swap.tokens.length)
+            .div(subpools[swap.subpoolId].nftReserves.sub(swap.tokens.length))
+        )
         .reduce((sum, v) => sum.add(v), BigNumber.from("0"));
       const pool = new Contract(poolAddress, poolAbi, signer);
       const tx = await pool.swap(swaps, { value: totalEthAmount });
