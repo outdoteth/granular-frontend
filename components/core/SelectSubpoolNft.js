@@ -12,7 +12,7 @@ import { useEffect } from "react";
 const addressToRankings = {
   ["0xE47463A0B8Fd39286D7a72cA8E334795779e2f77"]: baycRankings,
   ["0x53c5469859588991cea2fb2b56748c09f4339e07"]: moonbirdRankings,
-  ["0x8f6c95466df2dcd1bca17b5a7278b1a1f8e088bf"]: cryptopunkRankings,
+  ["0xffb858483895f440b8725ba805c4dbe8676662ea"]: cryptopunkRankings,
 };
 
 export const SelectSubpoolNft = ({
